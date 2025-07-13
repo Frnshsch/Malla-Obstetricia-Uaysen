@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Malla Obstetricia</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>Malla Interactiva - Obstetricia</h1>
+  <div class="grid">
+    <!-- Ejemplo de un ramo -->
+    <div class="ramo" data-id="intro" data-depends="">
+      <input type="checkbox" id="intro" />
+      <label for="intro">Fundamentos disciplinarios</label>
+    </div>
+
+    <div class="ramo" data-id="salud1" data-depends="intro,anat">
+      <input type="checkbox" id="salud1" disabled />
+      <label for="salud1">Salud de la mujer y RN I</label>
+    </div>
+
+    <div class="ramo" data-id="anat" data-depends="">
+      <input type="checkbox" id="anat" />
+      <label for="anat">Anatomía</label>
+    </div>
+
+    <div class="ramo" data-id="salud2" data-depends="salud1">
+      <input type="checkbox" id="salud2" disabled />
+      <label for="salud2">Salud de la mujer y RN II</label>
+    </div>
+
+    <!-- Puedes seguir agregando ramos -->
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
