@@ -58,3 +58,60 @@
   <script src="script.js"></script>
 </body>
 </html>
+body {
+  font-family: sans-serif;
+  padding: 20px;
+  background: #fff0f0;
+  color: #333;
+}
+
+h1 {
+  text-align: center;
+  color: #a00;
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.ramo {
+  background: white;
+  border: 2px solid #a00;
+  padding: 10px 15px;
+  border-radius: 8px;
+  width: 240px;
+  text-align: center;
+  box-shadow: 1px 1px 5px rgba(0,0,0,0.1);
+}
+
+.ramo input[type="checkbox"] {
+  margin-right: 10px;
+  accent-color: red;
+}
+
+.ramo input:checked + label {
+  text-decoration: line-through;
+  color: #999;
+}document.querySelectorAll('.ramo input').forEach(input => {
+  input.addEventListener('change', updateDependencies);
+});
+
+function updateDependencies() {
+  const checked = Array.from(document.querySelectorAll('.ramo input:checked')).map(el => el.id);
+
+  document.querySelectorAll('.ramo').forEach(ramo => {
+    const input = ramo.querySelector('input');
+    const depends = ramo.dataset.depends?.split(',').filter(Boolean) || [];
+
+    if (depends.length === 0) return;
+
+    const allMet = depends.every(id => checked.includes(id));
+    input.disabled = !allMet && !input.checked;
+  });
+}
+
+// Inicializar estado al cargar
+updateDependencies();
